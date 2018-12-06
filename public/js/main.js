@@ -123,7 +123,36 @@ var render = function() {
     }),
     _vm._v(" "),
     _c("table", { staticClass: "table" }, [
-      _vm._m(0),
+      _c("thead", [
+        _c("tr", [
+          _c("th", [_vm._v("Titulo")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("Autor")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("Resumo")]),
+          _vm._v(" "),
+          _c("th", [
+            _vm._v(" Ação "),
+            _c(
+              "button",
+              {
+                staticClass: "btn",
+                attrs: { type: "submit" },
+                on: {
+                  click: function($event) {
+                    _vm.adiciona(_vm.livro)
+                  }
+                }
+              },
+              [
+                _c("i", { staticClass: "medium material-icons right" }, [
+                  _vm._v("add")
+                ])
+              ]
+            )
+          ])
+        ])
+      ]),
       _vm._v(" "),
       _c(
         "tbody",
@@ -139,70 +168,46 @@ var render = function() {
               _c(
                 "button",
                 {
-                  staticClass: "btn btn-default",
+                  staticClass: "btn",
+                  attrs: { type: "submit" },
                   on: {
                     click: function($event) {
                       _vm.edita(livro.id)
                     }
                   }
                 },
-                [_vm._v(" Editar ")]
-              )
-            ]),
-            _vm._v(" "),
-            _c("td", [
+                [
+                  _c("i", { staticClass: "small material-icons right" }, [
+                    _vm._v("edit")
+                  ])
+                ]
+              ),
+              _vm._v(" "),
               _c(
                 "button",
                 {
-                  staticClass: "btn btn-default",
+                  staticClass: "btn",
+                  attrs: { type: "submit" },
                   on: {
                     click: function($event) {
                       _vm.deleta(livro.id)
                     }
                   }
                 },
-                [_vm._v(" Deletar ")]
+                [
+                  _c("i", { staticClass: "small material-icons right" }, [
+                    _vm._v("delete")
+                  ])
+                ]
               )
             ])
           ])
         })
       )
-    ]),
-    _vm._v(" "),
-    _c("td", [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-primary",
-          on: {
-            click: function($event) {
-              _vm.adiciona(_vm.livro)
-            }
-          }
-        },
-        [_vm._v(" Adicionar ")]
-      )
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v("Titulo")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Autor")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Resumo")]),
-        _vm._v(" "),
-        _c("th", [_vm._v(" Ação ")])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -11501,13 +11506,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_list_livros_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_list_livros_vue__);
 
 
-
-
 new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
-	el: '#container',
-	component: {
-		VueLivrosList: __WEBPACK_IMPORTED_MODULE_1__components_list_livros_vue___default.a
-	}
+  el: '#container',
+  component: {
+    VueLivrosList: __WEBPACK_IMPORTED_MODULE_1__components_list_livros_vue___default.a
+  }
 });
 
 /***/ }),
@@ -11857,41 +11860,47 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-	name: 'VueLivrosList',
-	props: ['livros', 'destroy'],
-	data: function data() {
-		return {
-			filter: "",
-			books: JSON.parse(this.livros)
-		};
-	},
-
-	computed: {
-		filterBooks: function filterBooks() {
-			var self = this;
-			return _.orderBy(self.books.filter(function (livro) {
-				var searchRegex = new RegExp(self.filter, 'i');
-
-				return searchRegex.test(livro.titulo);
-			}));
-		}
-	},
-	methods: {
-		edita: function edita(id) {
-			window.location.href = '/livro/' + id + '/edit';
-		},
-
-		adiciona: function adiciona() {
-			window.location.href = '/livro' + '/create';
-		},
-
-		deleta: function deleta(id) {
-			alert('ajustar');
-		}
-
-	}
+  name: 'VueLivrosList',
+  props: ['livros', 'destroy'],
+  data: function data() {
+    return {
+      filter: "",
+      books: JSON.parse(this.livros)
+    };
+  },
+  computed: {
+    filterBooks: function filterBooks() {
+      var self = this;
+      return _.orderBy(self.books.filter(function (livro) {
+        var searchRegex = new RegExp(self.filter, 'i');
+        return searchRegex.test(livro.titulo);
+      }));
+    }
+  },
+  methods: {
+    edita: function edita(id) {
+      window.location.href = '/livro/' + id + '/edit';
+    },
+    adiciona: function adiciona() {
+      window.location.href = '/livro' + '/create';
+    },
+    deleta: function deleta(id) {
+      alert('ajustar');
+    }
+  }
 });
 
 /***/ })

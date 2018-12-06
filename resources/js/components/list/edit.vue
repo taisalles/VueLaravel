@@ -1,29 +1,27 @@
 <template>
     <div v-bind="livro">
-        <div class="form-group row">
-            <label for="example-text-input" class="col-2 col-form-label">Título</label>
-            <div class="col-10">
-             <input class="form-control" type="text" value="" v-model="livro.titulo" name="titulo"> 
-            </div>
-        </div>
+       
+          <div class="row">
+          <div class="col-10">
+           <i class="material-icons prefix">import_contacts</i>
+           <input id="icon_prefix" type="text" class="validate" value="" placeholder="título" v-model="livro.titulo" name="titulo">
+           <label for="icon_prefix">Título</label>
+          </div>
 
-          <div class="form-group row">
-            <label for="example-text-input" class="col-2 col-form-label">Autor</label>
-            <div class="col-10">
-             <input class="form-control" type="text" value="" placeholder="Autor" v-model="livro.autor" name="autor"> 
-            </div>
-        </div>
+          <div class="col-10">
+            <i class="material-icons prefix">person_add</i>
+            <input id="icon_prefix" type="text" class="validate" value="" placeholder="autor" v-model="livro.autor" name="autor">
+           <label for="icon_prefix">Autor</label>
+          </div>
 
-          <div class="form-group row">
-            <label for="example-text-input" class="col-2 col-form-label">Resumo</label>
-            <div class="col-10">
-             <input class="form-control" type="text" value="" placeholder="Resumo" v-model="livro.resumo" name="resumo"> 
-            </div>
+         <div class="col-10">
+           <i class="material-icons prefix">subject</i>
+           <input id="icon_prefix" type="text" class="validate" value="" placeholder="resumo" v-model="livro.resumo" name="resumo">
+           <label for="icon_prefix"> Resumo</label>
+         </div>
 
-            <input class="form-control" type="hidden" value="" v-model="livro.id" name="id">
-
-        </div>
-
+         <input class="form-control" type="hidden" value="" v-model="livro.id" name="id">
+      </div>
 
     </div>
 </template>

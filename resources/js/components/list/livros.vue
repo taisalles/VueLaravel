@@ -8,7 +8,11 @@
 		    <th>Titulo</th>
 		    <th>Autor</th>
 		    <th>Resumo</th>
-            <th> Ação </th>
+
+            <th> Ação <button v-on:click="adiciona(livro)" class="btn" type="submit"> 
+            <i class="medium material-icons right">add</i>
+            </button> </th>
+
 		  </tr>
 		</thead>
 		<tbody>
@@ -16,13 +20,20 @@
 		    <td>{{livro.titulo}}</td>
 		    <td>{{livro.autor}}</td>
 		    <td>{{livro.resumo}}</td>
-            <td> <button v-on:click="edita(livro.id)" class="btn btn-default"> Editar </button> </td>
-            <td> <button v-on:click="deleta(livro.id)" class="btn btn-default"> Deletar </button> </td>
+
+             <td> <button v-on:click="edita(livro.id)" class="btn" type="submit"> 
+            <i class="small material-icons right">edit</i>
+            </button> 
+
+             <button v-on:click="deleta(livro.id)" class="btn" type="submit"> 
+            <i class="small material-icons right">delete</i>
+            </button> </td>
+
 		  </tr>
 		</tbody>
 		</table>
-        <td> <button v-on:click="adiciona(livro)" class="btn btn-primary"> Adicionar </button> </td>
-        <td> <a class="btn-floating btn-large waves-effect waves-light red" v-on:click="adiciona(livro)"><i class="material-icons">add</i></a> </td>
+       
+
     </div>
 </template>
 

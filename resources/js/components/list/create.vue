@@ -1,28 +1,27 @@
 <template>
-    <div>
-        <div class="form-group row">
-            <label for="example-text-input" class="col-2 col-form-label">Título</label>
-            <div class="col-10">
-             <input class="form-control" type="text" value="" placeholder="Título" name="titulo"> 
-            </div>
-        </div>
+     <div>
+        <div class="row">
+          <div class="col-10">
+           <i class="material-icons prefix">import_contacts</i>
+           <input id="icon_prefix" type="text" class="validate" value="" placeholder="título" name="titulo">
+           <label for="icon_prefix">Título</label>
+          </div>
 
-          <div class="form-group row">
-            <label for="example-text-input" class="col-2 col-form-label">Autor</label>
-            <div class="col-10">
-             <input class="form-control" type="text" value="" placeholder="Autor"  name="autor"> 
-            </div>
-        </div>
+          <div class="col-10">
+            <i class="material-icons prefix">person_add</i>
+            <input id="icon_prefix" type="text" class="validate" value="" placeholder="autor" name="autor">
+           <label for="icon_prefix">Autor</label>
+          </div>
 
-          <div class="form-group row">
-            <label for="example-text-input" class="col-2 col-form-label">Resumo</label>
-            <div class="col-10">
-             <input class="form-control" type="text" value="" placeholder="Resumo" name="resumo"> 
-            </div>
-        </div>
+         <div class="col-10">
+           <i class="material-icons prefix">subject</i>
+           <input id="icon_prefix" type="text" class="validate" value="" placeholder="resumo" name="resumo">
+           <label for="icon_prefix"> Resumo</label>
+         </div>
 
-
-    </div>
+      </div>
+   </div>
+      
 </template>
 
 <script>

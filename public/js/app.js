@@ -12112,41 +12112,47 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-	name: 'VueLivrosList',
-	props: ['livros', 'destroy'],
-	data: function data() {
-		return {
-			filter: "",
-			books: JSON.parse(this.livros)
-		};
-	},
-
-	computed: {
-		filterBooks: function filterBooks() {
-			var self = this;
-			return _.orderBy(self.books.filter(function (livro) {
-				var searchRegex = new RegExp(self.filter, 'i');
-
-				return searchRegex.test(livro.titulo);
-			}));
-		}
-	},
-	methods: {
-		edita: function edita(id) {
-			window.location.href = '/livro/' + id + '/edit';
-		},
-
-		adiciona: function adiciona() {
-			window.location.href = '/livro' + '/create';
-		},
-
-		deleta: function deleta(id) {
-			alert('ajustar');
-		}
-
-	}
+  name: 'VueLivrosList',
+  props: ['livros', 'destroy'],
+  data: function data() {
+    return {
+      filter: "",
+      books: JSON.parse(this.livros)
+    };
+  },
+  computed: {
+    filterBooks: function filterBooks() {
+      var self = this;
+      return _.orderBy(self.books.filter(function (livro) {
+        var searchRegex = new RegExp(self.filter, 'i');
+        return searchRegex.test(livro.titulo);
+      }));
+    }
+  },
+  methods: {
+    edita: function edita(id) {
+      window.location.href = '/livro/' + id + '/edit';
+    },
+    adiciona: function adiciona() {
+      window.location.href = '/livro' + '/create';
+    },
+    deleta: function deleta(id) {
+      alert('ajustar');
+    }
+  }
 });
 
 /***/ }),
@@ -12180,7 +12186,36 @@ var render = function() {
     }),
     _vm._v(" "),
     _c("table", { staticClass: "table" }, [
-      _vm._m(0),
+      _c("thead", [
+        _c("tr", [
+          _c("th", [_vm._v("Titulo")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("Autor")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("Resumo")]),
+          _vm._v(" "),
+          _c("th", [
+            _vm._v(" Ação "),
+            _c(
+              "button",
+              {
+                staticClass: "btn",
+                attrs: { type: "submit" },
+                on: {
+                  click: function($event) {
+                    _vm.adiciona(_vm.livro)
+                  }
+                }
+              },
+              [
+                _c("i", { staticClass: "medium material-icons right" }, [
+                  _vm._v("add")
+                ])
+              ]
+            )
+          ])
+        ])
+      ]),
       _vm._v(" "),
       _c(
         "tbody",
@@ -12196,70 +12231,46 @@ var render = function() {
               _c(
                 "button",
                 {
-                  staticClass: "btn btn-default",
+                  staticClass: "btn",
+                  attrs: { type: "submit" },
                   on: {
                     click: function($event) {
                       _vm.edita(livro.id)
                     }
                   }
                 },
-                [_vm._v(" Editar ")]
-              )
-            ]),
-            _vm._v(" "),
-            _c("td", [
+                [
+                  _c("i", { staticClass: "small material-icons right" }, [
+                    _vm._v("edit")
+                  ])
+                ]
+              ),
+              _vm._v(" "),
               _c(
                 "button",
                 {
-                  staticClass: "btn btn-default",
+                  staticClass: "btn",
+                  attrs: { type: "submit" },
                   on: {
                     click: function($event) {
                       _vm.deleta(livro.id)
                     }
                   }
                 },
-                [_vm._v(" Deletar ")]
+                [
+                  _c("i", { staticClass: "small material-icons right" }, [
+                    _vm._v("delete")
+                  ])
+                ]
               )
             ])
           ])
         })
       )
-    ]),
-    _vm._v(" "),
-    _c("td", [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-primary",
-          on: {
-            click: function($event) {
-              _vm.adiciona(_vm.livro)
-            }
-          }
-        },
-        [_vm._v(" Adicionar ")]
-      )
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v("Titulo")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Autor")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Resumo")]),
-        _vm._v(" "),
-        _c("th", [_vm._v(" Ação ")])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -12277,7 +12288,7 @@ if (false) {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* WEBPACK VAR INJECTION */(function(global) {/**!
  * @fileOverview Kickass library to create and place poppers near their reference elements.
- * @version 1.14.6
+ * @version 1.14.5
  * @license
  * Copyright (c) 2016 Federico Zivolo and contributors
  *
@@ -13027,8 +13038,8 @@ function getReferenceOffsets(state, popper, reference) {
 function getOuterSizes(element) {
   var window = element.ownerDocument.defaultView;
   var styles = window.getComputedStyle(element);
-  var x = parseFloat(styles.marginTop || 0) + parseFloat(styles.marginBottom || 0);
-  var y = parseFloat(styles.marginLeft || 0) + parseFloat(styles.marginRight || 0);
+  var x = parseFloat(styles.marginTop) + parseFloat(styles.marginBottom);
+  var y = parseFloat(styles.marginLeft) + parseFloat(styles.marginRight);
   var result = {
     width: element.offsetWidth + y,
     height: element.offsetHeight + x
@@ -13480,52 +13491,6 @@ function applyStyleOnLoad(reference, popper, options, modifierOptions, state) {
 
 /**
  * @function
- * @memberof Popper.Utils
- * @argument {Object} data - The data object generated by `update` method
- * @argument {Boolean} shouldRound - If the offsets should be rounded at all
- * @returns {Object} The popper's position offsets rounded
- *
- * The tale of pixel-perfect positioning. It's still not 100% perfect, but as
- * good as it can be within reason.
- * Discussion here: https://github.com/FezVrasta/popper.js/pull/715
- *
- * Low DPI screens cause a popper to be blurry if not using full pixels (Safari
- * as well on High DPI screens).
- *
- * Firefox prefers no rounding for positioning and does not have blurriness on
- * high DPI screens.
- *
- * Only horizontal placement and left/right values need to be considered.
- */
-function getRoundedOffsets(data, shouldRound) {
-  var _data$offsets = data.offsets,
-      popper = _data$offsets.popper,
-      reference = _data$offsets.reference;
-
-
-  var isVertical = ['left', 'right'].indexOf(data.placement) !== -1;
-  var isVariation = data.placement.indexOf('-') !== -1;
-  var sameWidthOddness = reference.width % 2 === popper.width % 2;
-  var bothOddWidth = reference.width % 2 === 1 && popper.width % 2 === 1;
-  var noRound = function noRound(v) {
-    return v;
-  };
-
-  var horizontalToInteger = !shouldRound ? noRound : isVertical || isVariation || sameWidthOddness ? Math.round : Math.floor;
-  var verticalToInteger = !shouldRound ? noRound : Math.round;
-
-  return {
-    left: horizontalToInteger(bothOddWidth && !isVariation && shouldRound ? popper.left - 1 : popper.left),
-    top: verticalToInteger(popper.top),
-    bottom: verticalToInteger(popper.bottom),
-    right: horizontalToInteger(popper.right)
-  };
-}
-
-var isFirefox = isBrowser && /Firefox/i.test(navigator.userAgent);
-
-/**
- * @function
  * @memberof Modifiers
  * @argument {Object} data - The data object generated by `update` method
  * @argument {Object} options - Modifiers configuration and options
@@ -13554,7 +13519,15 @@ function computeStyle(data, options) {
     position: popper.position
   };
 
-  var offsets = getRoundedOffsets(data, window.devicePixelRatio < 2 || !isFirefox);
+  // Avoid blurry text by using full pixel integers.
+  // For pixel-perfect positioning, top/bottom prefers rounded
+  // values, while left/right prefers floored values.
+  var offsets = {
+    left: Math.floor(popper.left),
+    top: Math.round(popper.top),
+    bottom: Math.round(popper.bottom),
+    right: Math.floor(popper.right)
+  };
 
   var sideA = x === 'bottom' ? 'top' : 'bottom';
   var sideB = y === 'right' ? 'left' : 'right';
@@ -25501,17 +25474,14 @@ module.exports = __webpack_require__(52);
 /* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-
 __webpack_require__(20);
 
 window.Vue = __webpack_require__(5);
-
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -25521,14 +25491,9 @@ window.Vue = __webpack_require__(5);
  */
 
 Vue.component('example-component', __webpack_require__(43));
-
 Vue.component('vue-livros-list', __webpack_require__(8));
-
 Vue.component('vue-livros-create', __webpack_require__(46));
-
-Vue.component('vue-livros-edit', __webpack_require__(49));
-
-// const files = require.context('./', true, /\.vue$/i)
+Vue.component('vue-livros-edit', __webpack_require__(49)); // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key)))
 
 /**
@@ -25545,9 +25510,7 @@ var app = new Vue({
 /* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
-
 window._ = __webpack_require__(21);
-
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This
@@ -25560,17 +25523,15 @@ try {
 
   __webpack_require__(23);
 } catch (e) {}
-
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
+
 window.axios = __webpack_require__(24);
-
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
 /**
  * Next we will register the CSRF Token as a common header with Axios so that
  * all outgoing HTTP requests automatically have it attached. This is just
@@ -25584,17 +25545,13 @@ if (token) {
 } else {
   console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
-
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
  * allows your team to easily build robust real-time web applications.
  */
-
 // import Echo from 'laravel-echo'
-
 // window.Pusher = require('pusher-js');
-
 // window.Echo = new Echo({
 //     broadcaster: 'pusher',
 //     key: process.env.MIX_PUSHER_APP_KEY,
@@ -47652,11 +47609,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        console.log('Component mounted.');
-    }
+  mounted: function mounted() {
+    console.log('Component mounted.');
+  }
 });
 
 /***/ }),
@@ -47781,8 +47737,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'VueLivrosCreate'
 });
@@ -47803,72 +47757,62 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", [
-      _c("div", { staticClass: "form-group row" }, [
-        _c(
-          "label",
-          {
-            staticClass: "col-2 col-form-label",
-            attrs: { for: "example-text-input" }
-          },
-          [_vm._v("Título")]
-        ),
-        _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-10" }, [
+          _c("i", { staticClass: "material-icons prefix" }, [
+            _vm._v("import_contacts")
+          ]),
+          _vm._v(" "),
           _c("input", {
-            staticClass: "form-control",
+            staticClass: "validate",
             attrs: {
+              id: "icon_prefix",
               type: "text",
               value: "",
-              placeholder: "Título",
+              placeholder: "título",
               name: "titulo"
             }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group row" }, [
-        _c(
-          "label",
-          {
-            staticClass: "col-2 col-form-label",
-            attrs: { for: "example-text-input" }
-          },
-          [_vm._v("Autor")]
-        ),
+          }),
+          _vm._v(" "),
+          _c("label", { attrs: { for: "icon_prefix" } }, [_vm._v("Título")])
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-10" }, [
+          _c("i", { staticClass: "material-icons prefix" }, [
+            _vm._v("person_add")
+          ]),
+          _vm._v(" "),
           _c("input", {
-            staticClass: "form-control",
+            staticClass: "validate",
             attrs: {
+              id: "icon_prefix",
               type: "text",
               value: "",
-              placeholder: "Autor",
+              placeholder: "autor",
               name: "autor"
             }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group row" }, [
-        _c(
-          "label",
-          {
-            staticClass: "col-2 col-form-label",
-            attrs: { for: "example-text-input" }
-          },
-          [_vm._v("Resumo")]
-        ),
+          }),
+          _vm._v(" "),
+          _c("label", { attrs: { for: "icon_prefix" } }, [_vm._v("Autor")])
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-10" }, [
+          _c("i", { staticClass: "material-icons prefix" }, [
+            _vm._v("subject")
+          ]),
+          _vm._v(" "),
           _c("input", {
-            staticClass: "form-control",
+            staticClass: "validate",
             attrs: {
+              id: "icon_prefix",
               type: "text",
               value: "",
-              placeholder: "Resumo",
+              placeholder: "resumo",
               name: "resumo"
             }
-          })
+          }),
+          _vm._v(" "),
+          _c("label", { attrs: { for: "icon_prefix" } }, [_vm._v(" Resumo")])
         ])
       ])
     ])
@@ -47964,9 +47908,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'VueLivrosEdit',
   props: ['book'],
@@ -47986,17 +47927,12 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", _vm._b({}, "div", _vm.livro, false), [
-    _c("div", { staticClass: "form-group row" }, [
-      _c(
-        "label",
-        {
-          staticClass: "col-2 col-form-label",
-          attrs: { for: "example-text-input" }
-        },
-        [_vm._v("Título")]
-      ),
-      _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-10" }, [
+        _c("i", { staticClass: "material-icons prefix" }, [
+          _vm._v("import_contacts")
+        ]),
+        _vm._v(" "),
         _c("input", {
           directives: [
             {
@@ -48006,8 +47942,14 @@ var render = function() {
               expression: "livro.titulo"
             }
           ],
-          staticClass: "form-control",
-          attrs: { type: "text", value: "", name: "titulo" },
+          staticClass: "validate",
+          attrs: {
+            id: "icon_prefix",
+            type: "text",
+            value: "",
+            placeholder: "título",
+            name: "titulo"
+          },
           domProps: { value: _vm.livro.titulo },
           on: {
             input: function($event) {
@@ -48017,21 +47959,16 @@ var render = function() {
               _vm.$set(_vm.livro, "titulo", $event.target.value)
             }
           }
-        })
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "form-group row" }, [
-      _c(
-        "label",
-        {
-          staticClass: "col-2 col-form-label",
-          attrs: { for: "example-text-input" }
-        },
-        [_vm._v("Autor")]
-      ),
+        }),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "icon_prefix" } }, [_vm._v("Título")])
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-10" }, [
+        _c("i", { staticClass: "material-icons prefix" }, [
+          _vm._v("person_add")
+        ]),
+        _vm._v(" "),
         _c("input", {
           directives: [
             {
@@ -48041,11 +47978,12 @@ var render = function() {
               expression: "livro.autor"
             }
           ],
-          staticClass: "form-control",
+          staticClass: "validate",
           attrs: {
+            id: "icon_prefix",
             type: "text",
             value: "",
-            placeholder: "Autor",
+            placeholder: "autor",
             name: "autor"
           },
           domProps: { value: _vm.livro.autor },
@@ -48057,21 +47995,14 @@ var render = function() {
               _vm.$set(_vm.livro, "autor", $event.target.value)
             }
           }
-        })
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "form-group row" }, [
-      _c(
-        "label",
-        {
-          staticClass: "col-2 col-form-label",
-          attrs: { for: "example-text-input" }
-        },
-        [_vm._v("Resumo")]
-      ),
+        }),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "icon_prefix" } }, [_vm._v("Autor")])
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-10" }, [
+        _c("i", { staticClass: "material-icons prefix" }, [_vm._v("subject")]),
+        _vm._v(" "),
         _c("input", {
           directives: [
             {
@@ -48081,11 +48012,12 @@ var render = function() {
               expression: "livro.resumo"
             }
           ],
-          staticClass: "form-control",
+          staticClass: "validate",
           attrs: {
+            id: "icon_prefix",
             type: "text",
             value: "",
-            placeholder: "Resumo",
+            placeholder: "resumo",
             name: "resumo"
           },
           domProps: { value: _vm.livro.resumo },
@@ -48097,7 +48029,9 @@ var render = function() {
               _vm.$set(_vm.livro, "resumo", $event.target.value)
             }
           }
-        })
+        }),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "icon_prefix" } }, [_vm._v(" Resumo")])
       ]),
       _vm._v(" "),
       _c("input", {

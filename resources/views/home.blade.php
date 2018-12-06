@@ -2,24 +2,18 @@
 @extends('layouts.app')
 
 @section('content')
-      
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
             <div class="container">
-                <div class="card-content">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                <div id="app">
+                 <vue-livros-list livros="{{$livro}}"> </vue-livros-list>
+                </div> 
 
-            <div id="app">
-                <vue-livros-list livros="{{$livro}}"> </vue-livros-list>
-            </div>   
-             <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
-                    
-                </div>
+
+            <script type="text/javascript" src="js/materialize.min.js"></script>        
             </div>
+           
 
             
        
-@endsection
-
+@endsection 
